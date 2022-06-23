@@ -1,6 +1,6 @@
 resource "aws_security_group" "EKS_SG" {
   name        = "eks-cluster-sg-SII-PROD-EKS"
-  description = "Grupo de seguridad de EKS2"
+  description = "Grupo de seguridad de EKS"
   vpc_id      = var.vpc_id
 
   dynamic "ingress" {
