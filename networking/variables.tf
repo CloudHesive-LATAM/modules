@@ -103,8 +103,8 @@ variable "project-tags" {
   type = map(string)
   default = {
     service     = "Ec2",
-    environment = "POC",
-    app = "POC"
+    app = "POC",
+    app2 = "POC2"
   }
 }
 
