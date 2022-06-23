@@ -43,6 +43,7 @@ resource "aws_eks_node_group" "eks-ng-2" {
     name    = data.aws_launch_template.POC.name
     version = data.aws_launch_template.POC.latest_version
   }
+} 
 
 # Node Group 2
 resource "aws_eks_node_group" "eks-ng-3" {
@@ -64,7 +65,7 @@ resource "aws_eks_node_group" "eks-ng-3" {
     name    = data.aws_launch_template.POC.name
     version = data.aws_launch_template.POC.latest_version
   }
-
+}
   #   remote_access {
   #     ec2_ssh_key = var.eks_nodes_key
   #     source_security_group_ids = []
@@ -73,8 +74,7 @@ resource "aws_eks_node_group" "eks-ng-3" {
   depends_on = [
     aws_iam_role.eks_worker_role,
     aws_iam_role_policy_attachment.eks_worker_policies_to_be_attached
-  ]
-}  
+  ]  
 /*
 
 # /ADDON Groups Definition: 
