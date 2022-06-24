@@ -48,7 +48,34 @@ resource "aws_eks_node_group" "eks-ng-2" {
     aws_iam_role.eks_worker_role,
     aws_iam_role_policy_attachment.eks_worker_policies_to_be_attached
   ]
-} 
+}
+
+# Node Group 3
+resource "aws_eks_node_group" "eks-ng-3" {
+  cluster_name    = aws_eks_cluster.eks-cluster.name
+  node_group_name = "eks-ng-3"
+  node_role_arn   = aws_iam_role.eks_worker_role.arn
+  subnet_ids      = var.private_subnets
+
+  # instance_types  = [var.instance_type["type1"]]
+  tags = merge(var.project-tags, { Name = "${var.resource-name-tag}-ng-1" }, )
+
+  scaling_config {
+    desired_size = 1
+    max_size     = 50
+    min_size     = 1
+  }
+
+  launch_template {
+    name    = data.aws_launch_template.POC.name
+    version = data.aws_launch_template.POC.latest_version
+  }
+
+  depends_on = [
+    aws_iam_role.eks_worker_role,
+    aws_iam_role_policy_attachment.eks_worker_policies_to_be_attached
+  ]
+}
 /*
 
 # /ADDON Groups Definition: 
